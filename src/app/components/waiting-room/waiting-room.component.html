@@ -12,9 +12,9 @@
     <div class="roomstatus">
         <span>Room Status : </span>
         <div class="statuscontainer">
-            <span *ngIf="manager.locked" class="locked"><img src="../../../assets/locked.svg" alt="locked">
+            <span *ngIf="manager.locked" class="locked"><img src="assets/locked.svg" alt="locked">
                 Locked&nbsp;&nbsp;&nbsp;</span>
-            <span *ngIf="!manager.locked" class="locked"><img src="../../../assets/unlocked.svg" alt="unlocked">
+            <span *ngIf="!manager.locked" class="locked"><img src="assets/unlocked.svg" alt="unlocked">
                 Unlocked&nbsp;&nbsp;&nbsp;</span>
             <mat-slide-toggle [checked]="manager.locked" *ngIf="manager.playerHost" (change)="toggleLock($event)"
                 color="primary"></mat-slide-toggle>
@@ -42,8 +42,8 @@
                     <span class="name">
                         <span *ngIf="player.host" class="innerhost">HOST<br></span>
                         {{player.username}} <span *ngIf="player.userid==user.userid">(You)</span></span>
-                    <img *ngIf="player.mute" src="../../../assets/micMute.svg" alt="micmute">
-                    <img *ngIf="!player.mute" src="../../../assets/micUnmute.svg" alt="micunmute">
+                    <img *ngIf="player.mute" src="assets/micMute.svg" alt="micmute">
+                    <img *ngIf="!player.mute" src="assets/micUnmute.svg" alt="micunmute">
                 </div>
             </div>
 
@@ -69,7 +69,7 @@
                     <span [matMenuTriggerFor]="gameSelector" class="selector">
                         <span *ngIf="manager.gametype==2">Classic</span> 
                         <span *ngIf="manager.gametype==1">Mini</span>
-                        <img src="../../../assets/dropdown.svg" alt="dropdown">
+                        <img src="assets/dropdown.svg" alt="dropdown">
                     </span>
 
                     <mat-menu #gameSelector="matMenu">
@@ -93,24 +93,24 @@
     <section class="info">
         <div class="information">
             <div class="legend">
-                <h4><img src="../../../assets/locked.svg" alt="locked"> Locked</h4>
+                <h4><img src="assets/locked.svg" alt="locked"> Locked</h4>
                 <p>Random people cannot join until you invite them.</p>
             </div>
             <div class="legend">
-                <h4><img src="../../../assets/unlocked.svg" alt="unlocked"> Unlocked</h4>
+                <h4><img src="assets/unlocked.svg" alt="unlocked"> Unlocked</h4>
                 <p>Random People can join without invitation</p>
             </div>
             <div class="legend">
-                <h4><img src="../../../assets/bullet.svg" alt="bullet"> Classic Game Mode</h4>
+                <h4><img src="assets/bullet.svg" alt="bullet"> Classic Game Mode</h4>
                 <p>16x16 Classic Game Board</p>
             </div>
             <div class="legend">
-                <h4><img src="../../../assets/bullet.svg" alt="bullet"> Mini Game Mode</h4>
+                <h4><img src="assets/bullet.svg" alt="bullet"> Mini Game Mode</h4>
                 <p>11x11 Mini Game Board.</p>
             </div>
         </div>
         <div class="rulescontainer">
-            <button matRipple class="rules"><img src="../../../assets/scroll.svg" alt="scroll"> RULES</button>
+            <button matRipple class="rules"><img src="assets/scroll.svg" alt="scroll"> RULES</button>
         </div>
     </section>
 </div>

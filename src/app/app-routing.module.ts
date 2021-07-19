@@ -20,9 +20,6 @@ const routes: Routes = [
     path: "",
     component: HomeComponent
   },{
-    path: "sandbox",
-    component: SandboxComponent
-  },{
     path: "offlineclassic",
     component: OfflineClassicComponent,
     canActivate: [OfflineGameGuard]

@@ -17,12 +17,12 @@
                 'bluebg': player.color==4
             }" class="marker">{{player.rank}}</p>
             <span class="playername"> {{player.username}} <span *ngIf="player.userid==user.userid">(You)</span> </span>
-            <img *ngIf="player.mute&&!controller.offline" src="../../../assets/micMute.svg" alt="micstatus"
+            <img *ngIf="player.mute&&!controller.offline" src="assets/micMute.svg" alt="micstatus"
                 class="micstatus">
-            <img *ngIf="!player.mute&&!controller.offline" src="../../../assets/micUnmute.svg" alt="micstatus"
+            <img *ngIf="!player.mute&&!controller.offline" src="assets/micUnmute.svg" alt="micstatus"
                 class="micstatus">
             <span *ngIf="!player.online&&!controller.offline" class="disconnected"><img
-                    src="../../../assets/disconnect.svg" alt="disconnected"> Disconnected</span>
+                    src="assets/disconnect.svg" alt="disconnected"> Disconnected</span>
         </div>
     </div>
 

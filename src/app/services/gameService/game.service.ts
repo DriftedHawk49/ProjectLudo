@@ -18,40 +18,40 @@ const maxSteps = {
 
 const diceURLlist: any = {
   1: [
-    '../../../assets/yellow-dice/default.svg',
-    '../../../assets/yellow-dice/one.svg',
-    '../../../assets/yellow-dice/two.svg',
-    '../../../assets/yellow-dice/three.svg',
-    '../../../assets/yellow-dice/four.svg',
-    '../../../assets/yellow-dice/five.svg',
-    '../../../assets/yellow-dice/six.svg'
+    'assets/yellow-dice/one.svg',
+    'assets/yellow-dice/default.svg',
+    'assets/yellow-dice/two.svg',
+    'assets/yellow-dice/three.svg',
+    'assets/yellow-dice/four.svg',
+    'assets/yellow-dice/five.svg',
+    'assets/yellow-dice/six.svg'
   ],
   2: [
-    '../../../assets/red-dice/default.svg',
-    '../../../assets/red-dice/one.svg',
-    '../../../assets/red-dice/two.svg',
-    '../../../assets/red-dice/three.svg',
-    '../../../assets/red-dice/four.svg',
-    '../../../assets/red-dice/five.svg',
-    '../../../assets/red-dice/six.svg'
+    'assets/red-dice/default.svg',
+    'assets/red-dice/one.svg',
+    'assets/red-dice/two.svg',
+    'assets/red-dice/three.svg',
+    'assets/red-dice/four.svg',
+    'assets/red-dice/five.svg',
+    'assets/red-dice/six.svg'
   ],
   3: [
-    '../../../assets/green-dice/default.svg',
-    '../../../assets/green-dice/one.svg',
-    '../../../assets/green-dice/two.svg',
-    '../../../assets/green-dice/three.svg',
-    '../../../assets/green-dice/four.svg',
-    '../../../assets/green-dice/five.svg',
-    '../../../assets/green-dice/six.svg'
+    'assets/green-dice/default.svg',
+    'assets/green-dice/one.svg',
+    'assets/green-dice/two.svg',
+    'assets/green-dice/three.svg',
+    'assets/green-dice/four.svg',
+    'assets/green-dice/five.svg',
+    'assets/green-dice/six.svg'
   ],
   4: [
-    '../../../assets/blue-dice/default.svg',
-    '../../../assets/blue-dice/one.svg',
-    '../../../assets/blue-dice/two.svg',
-    '../../../assets/blue-dice/three.svg',
-    '../../../assets/blue-dice/four.svg',
-    '../../../assets/blue-dice/five.svg',
-    '../../../assets/blue-dice/six.svg'
+    'assets/blue-dice/default.svg',
+    'assets/blue-dice/one.svg',
+    'assets/blue-dice/two.svg',
+    'assets/blue-dice/three.svg',
+    'assets/blue-dice/four.svg',
+    'assets/blue-dice/five.svg',
+    'assets/blue-dice/six.svg'
   ]
 };
 

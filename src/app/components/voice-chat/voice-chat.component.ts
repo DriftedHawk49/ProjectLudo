@@ -41,7 +41,7 @@ export class VoiceChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    // console.log(this.peer);
+    console.log(this.peer);
     // START FROM HERE
 
     /* 
@@ -94,6 +94,7 @@ export class VoiceChatComponent implements OnInit, OnDestroy {
 
 
       this.peer.on("open", (arg: any) => {
+
         console.log("PEER CONNECTED");
         console.log(arg);
         if (this.controller.players.length) {

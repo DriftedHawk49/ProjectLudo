@@ -23,7 +23,7 @@ speed-measure-plugin*.json
 *.launch
 .settings/
 *.sublime-workspace
-/gameServer
+gameServer/
 
 # IDE - VSCode
 .vscode/*

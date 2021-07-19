@@ -1,0 +1,132 @@
+/* You can add global styles to this file, and also import other style files */
+@use "./app/colors";
+
+html,
+body {
+    padding: 0px;
+    margin: 0px;
+    font-family: "Rubik", sans-serif;
+}
+
+h1,h2,h3,h4,h5,h6{
+    font-family: "Nunito", sans-serif;
+    font-weight: 600;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+.nunito {
+    font-family: "Nunito", sans-serif;
+}
+
+.rubik {
+    font-family: "Rubik", sans-serif;
+}
+
+.modalClass {
+    width: 350px;
+    max-width: 350px !important;
+    mat-dialog-container {
+        padding: 20px;
+    }
+}
+
+.labelField1{
+display: block;
+}
+
+.textField1{
+    padding: 10px;
+    width: 100%;
+    border: 1px solid colors.$black;
+    border-radius: 3px;
+    font-size: 20px;
+
+}
+
+.standard-btn {
+    width: 100%;
+    text-align: center;
+    border: none;
+    border-radius: 2px;
+    color: white;
+    padding: 6px 0px;
+    font-size: 20px;
+    font-weight: 600;
+    font-family: "Nunito", sans-serif;
+    margin-top: 20px;
+}
+
+.close-btn{
+    cursor: pointer;
+}
+
+.modalHeader {
+    font-size: 25px;
+    font-weight: 500;
+    margin: 0px 0px 25px 0px;
+}
+
+.dialogHeader{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    h1{
+        font-size:  24px;
+        margin: 0px;
+    }
+}
+
+.search{
+    border: 1px solid black;
+    padding: 6px 8px;
+    border-radius: 2px;
+   
+    img{
+        vertical-align: middle;
+        margin-right: 10px;
+    }
+
+    input{
+        border: none;
+        padding: 3px;
+        width: 85%;
+    }
+}
+
+.error {
+    display: block;
+    color: colors.$red;
+    font-size: 10px;
+    font-weight: 500;
+}
+
+
+
+.snackbar {
+    min-height: 40px;
+    // background-color: colors.$black;
+    color: white;
+}
+
+body {
+    background-image: url("./assets/ludoBoardBackground.svg");
+    background-repeat: no-repeat;
+    background-position: 130% 120%;
+    background-attachment: fixed;
+}
+
+@media only screen and (max-width: 1199px) {
+    body {
+        background-position: 0% 100%;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    body {
+        background-size: 600px;
+        background-position: 0% 100%;
+    }
+}

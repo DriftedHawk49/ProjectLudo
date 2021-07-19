@@ -1,0 +1,126 @@
+<div class="diceAndStatsContainer">
+
+    <h2 class="roomname">
+        {{controller.roomname}}
+    </h2>
+
+    <div class="playerContainer">
+        <div class="players1">
+            <div class="yellowPlayer">
+                <span class="tag bgyellow">Y</span>
+                <div class="restContainer">
+                    <progress *ngIf="controller.turn==1" [value]="controller.ticker"
+                        [max]="controller.maxTime"></progress>
+                    <div class="nameAndMic">
+                        <span>
+                            {{controller.players[0].username}}
+                            <span *ngIf="user.userid==controller.players[0].userid&&!controller.offline">(You)</span>
+                        </span>
+
+                        <span>
+                            <img *ngIf="!controller.offline&&controller.players[0].mute"
+                                src="../../../assets/micMute.svg" alt="mic status">
+                            <img *ngIf="!controller.offline&&!controller.players[0].mute"
+                                src="../../../assets/micUnmute.svg" alt="mic status">
+                        </span>
+                    </div>
+                    <div class="statusContainer">
+                        <span *ngIf="!controller.offline&&!controller.players[0].online" class="disconnected"><img
+                                src="../../../assets/disconnect.svg" alt="disconnected">
+                            Disconnected</span>
+                        <span *ngIf="!controller.offline&&controller.players[0].rank!=-1" class="prize"><img
+                                src="../../../assets/prize.svg" alt="prize"> Rank {{controller.players[0].rank}}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="redPlayer">
+                <span class="tag bgred">R</span>
+                <div class="restContainer">
+                    <progress *ngIf="controller.turn==2" [value]="controller.ticker"
+                        [max]="controller.maxTime"></progress>
+                    <div class="nameAndMic">
+                        <span>
+                            {{controller.players[1].username}}
+                            <span *ngIf="user.userid==controller.players[1].userid&&!controller.offline">(You)</span>
+                        </span>
+
+                        <span>
+                            <img *ngIf="!controller.offline&&controller.players[1].mute"
+                                src="../../../assets/micMute.svg" alt="mic status">
+                            <img *ngIf="!controller.offline&&!controller.players[1].mute"
+                                src="../../../assets/micUnmute.svg" alt="mic status">
+                        </span>
+                    </div>
+                    <div class="statusContainer">
+                        <span *ngIf="!controller.offline&&!controller.players[1].online" class="disconnected"><img
+                                src="../../../assets/disconnect.svg" alt="disconnected">
+                            Disconnected</span>
+                        <span *ngIf="!controller.offline&&controller.players[1].rank!=-1" class="prize"><img
+                                src="../../../assets/prize.svg" alt="prize"> Rank {{controller.players[1].rank}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="diceContainer">
+            <img (click)="diceClick()" [src]="controller.diceURL" alt="dice">
+        </div>
+        <div class="players2">
+            <div *ngIf="controller.players.length>=3" class="greenPlayer">
+                <span class="tag bggreen">G</span>
+                <div class="restContainer">
+                    <progress *ngIf="controller.turn==3" [value]="controller.ticker"
+                        [max]="controller.maxTime"></progress>
+                    <div class="nameAndMic">
+                        <span>
+                            {{controller.players[2].username}}
+                            <span *ngIf="user.userid==controller.players[2].userid&&!controller.offline">(You)</span>
+                        </span>
+
+                        <span>
+                            <img *ngIf="!controller.offline&&controller.players[2].mute"
+                                src="../../../assets/micMute.svg" alt="mic status">
+                            <img *ngIf="!controller.offline&&!controller.players[2].mute"
+                                src="../../../assets/micUnmute.svg" alt="mic status">
+                        </span>
+                    </div>
+                    <div class="statusContainer">
+                        <span *ngIf="!controller.offline&&!controller.players[2].online" class="disconnected"><img
+                                src="../../../assets/disconnect.svg" alt="disconnected">
+                            Disconnected</span>
+                        <span *ngIf="!controller.offline&&controller.players[2].rank!=-1" class="prize"><img
+                                src="../../../assets/prize.svg" alt="prize"> Rank {{controller.players[2].rank}}</span>
+                    </div>
+                </div>
+            </div>
+            <div *ngIf="controller.players.length==4" class="bluePlayer">
+                <span class="tag bgblue">B</span>
+                <div class="restContainer">
+                    <progress *ngIf="controller.turn==4" [value]="controller.ticker"
+                        [max]="controller.maxTime"></progress>
+                    <div class="nameAndMic">
+                        <span>
+                            {{controller.players[3].username}}
+                            <span *ngIf="user.userid==controller.players[3].userid&&!controller.offline">(You)</span>
+                        </span>
+
+                        <span>
+                            <img *ngIf="!controller.offline&&controller.players[3].mute"
+                                src="../../../assets/micMute.svg" alt="mic status">
+                            <img *ngIf="!controller.offline&&!controller.players[3].mute"
+                                src="../../../assets/micUnmute.svg" alt="mic status">
+                        </span>
+                    </div>
+                    <div class="statusContainer">
+                        <span *ngIf="!controller.offline&&!controller.players[3].online" class="disconnected"><img
+                                src="../../../assets/disconnect.svg" alt="disconnected">
+                            Disconnected</span>
+                        <span *ngIf="!controller.offline&&controller.players[3].rank!=-1" class="prize"><img
+                                src="../../../assets/prize.svg" alt="prize"> Rank {{controller.players[3].rank}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>

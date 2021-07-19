@@ -1,0 +1,39 @@
+@use "../../colors";
+
+header{
+
+    display: flex;
+    margin-top: 30px;
+    justify-content: space-between;
+
+    img{
+
+    }
+
+    .name-container{
+        background-color: colors.$black;
+        font-weight: 500;
+        font-size: 18px;
+        color: white;
+        padding: 5px 30px;
+        border-radius: 50px 0px 50px 0px;
+    }
+
+}
+
+@media only screen and (max-width: 1199px){
+
+}
+
+@media only screen and (max-width: 767px){
+    header{
+        margin-top: 10px;
+        img{
+            width: 100px;
+        }
+        .name-container{
+            font-size: 13px;
+            font-weight: 400;
+        }
+    }
+}

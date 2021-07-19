@@ -1,0 +1,25 @@
+<header class="dialogHeader">
+    <h1>Find Rooms</h1>
+    <img (click)="closeDialog()" class="close-btn" src="../../../../assets/red-cross.svg" alt="close">
+</header>
+
+<section class="search">
+    <img src="../../../../assets/search.svg" alt="search">
+    <input #searchbar (keyup)="searchByRoomName(searchbar)" type="text" name="searchbar"
+        placeholder="Search by Room Name" id="searchbar">
+</section>
+
+<section class="roomsContainer">
+    <div *ngIf="noOfRooms==0">
+        No Open Rooms currently available!
+    </div>
+    <div *ngIf="noOfRooms!=0">
+        <div *ngFor="let roomid of Object.keys(openRooms)" class="room">
+            <span class="noOfPlayers">{{openRooms[roomid].noOfPlayers}} <img src="../../../../assets/group.svg"
+                    alt="people"></span>
+            <span class="roomname">{{openRooms[roomid].roomname}}</span>
+            <button matRipple (click)="joinRoom(roomid)" class="join">JOIN</button>
+        </div>
+    </div>
+
+</section>

@@ -1,0 +1,138 @@
+@use '../../colors';
+
+header{
+    h1{
+        font-size: 40px;
+        font-weight: 500;
+        color: colors.$black;
+        margin-bottom: 0px;
+    }
+
+    p{
+        font-weight: 18px;
+        margin: 0px;
+        color: colors.$black;
+    }
+}
+
+.playersContainer{
+    margin: 30px auto 0px auto;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    place-items: center;
+}
+
+.player{
+    text-align: center;
+}
+
+.marker{
+    width: 100px;
+    height: 100px;
+    color: white;
+    border-radius: 10px;
+    margin: 0px;
+    display: grid;
+    font-size: 50px;
+    place-items: center;
+    font-weight: 500;
+}
+
+.playername, .disconnected{
+    display: block;
+    font-weight: 500;
+}
+
+.disconnected{
+    color: red;
+}
+
+.redbg{
+    background-color: colors.$red;
+}
+
+.yellowbg{
+    background-color: colors.$verydarkyellow;
+}
+
+.greenbg{
+    background-color: colors.$green;
+}
+
+.bluebg{
+    background-color: colors.$blue;
+}
+
+.host{
+    font-size: 12px;
+    padding: 2px 0px;
+    border-radius: 20px;
+    color: white;
+    background-color: colors.$black;
+    font-weight: 600;
+    margin: -25px auto 5px auto;
+    display: block;
+    width: 50px;
+    text-align: center;
+
+}
+
+.buttonsContainer{
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    place-items: center;
+    margin: 50px auto;
+    span{
+        font-size: 25px;
+        font-weight: 600;
+    }
+}
+
+button{
+    width: 150px;
+    font-size: 20px;
+    font-weight: 600;
+    padding: 10px 0px;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.endgame{
+    background-color:colors.$red;
+}
+
+.playagain{
+    background-color: colors.$verydarkblue;
+}
+
+
+@media only screen and (max-width: 767px){
+
+    .marker{
+        width: 50px;
+        height: 50px;
+        color: white;
+        border-radius: 5px;
+        font-size: 30px;
+    }
+
+    .playername, .disconnected{
+        font-size: 12px;
+    }
+    
+    .host{
+        font-size: 10px;
+        width: 40px;
+    }
+
+    .buttonsContainer{
+        grid-template-columns: none;
+        grid-template-rows: repeat(3, 1fr);
+        gap: 10px;
+        
+    }
+
+}

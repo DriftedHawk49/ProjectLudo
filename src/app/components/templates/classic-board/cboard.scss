@@ -1,0 +1,59 @@
+@use '../../../colors';
+
+.boardContainer {
+    .boardRow {
+        display: grid;
+        grid-template-columns: repeat(15, 50px);
+        gap: 5px;
+        margin-bottom: 5px;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    .boardContainer {
+        .boardRow {
+            grid-template-columns: repeat(15, 40px);
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .boardContainer {
+        .boardRow {
+            gap: 2px;
+            grid-template-columns: repeat(15, 21px);
+        }
+    }
+
+    .tile {
+        height: 20px !important;
+        width: 20px !important;
+    }
+    .singleToken {
+        width: 16px !important;
+        height: 16px !important;
+        font-size: 13px !important;
+    }
+    .multipleTokenContainer {
+        color: white;
+        width: 18px !important;
+        height: 18px !important;
+        div {
+            width: 9px !important;
+            height: 9px !important;
+            font-size: 8px !important;
+            font-weight: 600 !important;
+        }
+    }
+
+    .yellowHomeEntry,
+    .greenHomeEntry,
+    .redHomeEntry,
+    .blueHomeEntry {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 10px auto;
+    }
+
+    
+}

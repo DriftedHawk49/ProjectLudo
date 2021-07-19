@@ -1,0 +1,119 @@
+<header>
+    <div class="roominfo">
+        <h1>{{manager.roomname}}</h1>
+        <span>#{{manager.roomid}}</span>
+    </div>
+    <div *ngIf="manager.playerHost">
+        <button (click)="openInviteDialog()" matRipple class="inviteplayers">Invite People</button>
+    </div>
+</header>
+
+<div class="roomstatuscontainer">
+    <div class="roomstatus">
+        <span>Room Status : </span>
+        <div class="statuscontainer">
+            <span *ngIf="manager.locked" class="locked"><img src="../../../assets/locked.svg" alt="locked">
+                Locked&nbsp;&nbsp;&nbsp;</span>
+            <span *ngIf="!manager.locked" class="locked"><img src="../../../assets/unlocked.svg" alt="unlocked">
+                Unlocked&nbsp;&nbsp;&nbsp;</span>
+            <mat-slide-toggle [checked]="manager.locked" *ngIf="manager.playerHost" (change)="toggleLock($event)"
+                color="primary"></mat-slide-toggle>
+            <!-- <mat-slide-toggle color="primary" [(ngModel)]="isLocked"></mat-slide-toggle> -->
+        </div>
+    </div>
+</div>
+<div class="allcontainer">
+    <section class="game">
+        <div class="players">
+            <div *ngFor="let player of manager.players" class="player" [ngClass]="{
+                    'yellowplayer': player.color==1,
+                    'redplayer' : player.color ==2,
+                    'greenplayer': player.color==3,
+                    'blueplayer': player.color==4
+                }">
+                <span *ngIf="player.host" class="taghost">Host</span>
+                <div [ngClass]="{
+                    'yellowmarker': player.color==1,
+                    'redmarkerconnected': player.color==2,
+                    'greenmarkerconnected': player.color==3,
+                    'bluemarkerconnected': player.color==4
+                }" class="marker"></div>
+                <div class="nameinfo">
+                    <span class="name">
+                        <span *ngIf="player.host" class="innerhost">HOST<br></span>
+                        {{player.username}} <span *ngIf="player.userid==user.userid">(You)</span></span>
+                    <img *ngIf="player.mute" src="../../../assets/micMute.svg" alt="micmute">
+                    <img *ngIf="!player.mute" src="../../../assets/micUnmute.svg" alt="micunmute">
+                </div>
+            </div>
+
+            <div *ngFor="let c of notConnected" class="player" [ngClass]="{
+                'redplayer': c==2,
+                'greenplayer': c==3,
+                'blueplayer': c==4
+            }">
+                <div [ngClass]="{
+                    'greenmarkerdisconnected': c==3,
+                    'redmarkerdisconnected': c==2,
+                    'bluemarkerdisconnected': c==4
+                }" class="marker">
+                    <span>?</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="buttoncontainer">
+            <div *ngIf="manager.playerHost" class="buttons">
+                <div class="gametype">
+                    <span class="label">Select Game Type</span>
+                    <span [matMenuTriggerFor]="gameSelector" class="selector">
+                        <span *ngIf="manager.gametype==2">Classic</span> 
+                        <span *ngIf="manager.gametype==1">Mini</span>
+                        <img src="../../../assets/dropdown.svg" alt="dropdown">
+                    </span>
+
+                    <mat-menu #gameSelector="matMenu">
+                        <button (click)="changeGameMode(2)" mat-menu-item>Classic</button>
+                        <button (click)="changeGameMode(1)" mat-menu-item>Mini</button>
+                    </mat-menu>
+                </div>
+
+                <button (click)="startGame()" [disabled]="manager.players.length==1" matRipple class="begin">START GAME</button>
+
+            </div>
+
+            <div *ngIf="manager.gametype==2&&!manager.playerHost" class="status">
+                Game Type : Classic
+            </div>
+            <div *ngIf="manager.gametype==1&&!manager.playerHost" class="status">
+                Game Type : Mini
+            </div>
+        </div>
+    </section>
+    <section class="info">
+        <div class="information">
+            <div class="legend">
+                <h4><img src="../../../assets/locked.svg" alt="locked"> Locked</h4>
+                <p>Random people cannot join until you invite them.</p>
+            </div>
+            <div class="legend">
+                <h4><img src="../../../assets/unlocked.svg" alt="unlocked"> Unlocked</h4>
+                <p>Random People can join without invitation</p>
+            </div>
+            <div class="legend">
+                <h4><img src="../../../assets/bullet.svg" alt="bullet"> Classic Game Mode</h4>
+                <p>16x16 Classic Game Board</p>
+            </div>
+            <div class="legend">
+                <h4><img src="../../../assets/bullet.svg" alt="bullet"> Mini Game Mode</h4>
+                <p>11x11 Mini Game Board.</p>
+            </div>
+        </div>
+        <div class="rulescontainer">
+            <button matRipple class="rules"><img src="../../../assets/scroll.svg" alt="scroll"> RULES</button>
+        </div>
+    </section>
+</div>
+
+<app-chat-button></app-chat-button>
+<app-voice-chat></app-voice-chat>

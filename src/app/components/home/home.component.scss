@@ -1,0 +1,81 @@
+@use "../../colors";
+
+.green {
+    color: colors.$green;
+}
+
+.blue {
+    color: colors.$blue;
+}
+
+.yellow {
+    color: colors.$yellow;
+}
+
+.red {
+    color: colors.$red;
+}
+
+h1 {
+    font-size: 50px;
+    margin-top: 50px;
+}
+
+ul {
+    width: 600px;
+    li {
+        list-style-image: url("./../../../assets/bullet.svg");
+        margin-bottom: 10px;
+        font-size: 20px;
+        color: colors.$black;
+    }
+}
+
+.getStarted-btn {
+    margin: 40px 0px 0px 20px;
+    background-color: colors.$blue;
+    border: none;
+    border-radius: 5px;
+    padding: 20px 20px;
+    cursor: pointer;
+    color: white;
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: 1px;
+
+    img {
+        vertical-align: middle;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    h1 {
+        font-size: 40px;
+        margin-top: 30px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    h1 {
+        font-size: 25px;
+        margin-top: 20px;
+    }
+
+    ul {
+        width: auto;
+        li {
+            margin-bottom: 5px;
+            font-size: 16px;
+        }
+    }
+
+    .getStarted-btn {
+        margin: 10px 0px 0px 20px;
+        padding: 10px 10px;
+        font-size: 20px;
+
+        img {
+            width: 30px;
+        }
+    }
+}

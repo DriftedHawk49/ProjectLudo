@@ -1,0 +1,19 @@
+@use "../../../colors";
+
+button{
+    margin-top: 10px;
+    cursor: pointer;
+}
+.offline{
+    background-color: colors.$green;
+}
+
+.online{
+    background-color: colors.$red;
+}
+
+.separator{
+    margin: 10px 0px;
+    display: block;
+    text-align: center;
+}

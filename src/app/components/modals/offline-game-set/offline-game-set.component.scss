@@ -1,0 +1,72 @@
+@use "../../../colors";
+
+.yellow{
+    background-color: colors.$yellow;
+}
+
+.blue{
+    background-color: colors.$blue;
+}
+
+.green{
+    background-color: colors.$darkgreen;
+}
+
+.red{
+    background-color: colors.$red;
+}
+
+
+.numberOfPlayers, .gameType{
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+    font-size: 20px;
+    vertical-align: middle;
+    align-items: center;
+    button{
+        border: none;
+        border-radius: 2px;
+        font-family: "Rubik";
+        background-color: white;
+        padding: 7px 10px;
+        font-size: 20px;
+        box-shadow: 0px 0px 6px colors.$lightgray;
+        img{
+            margin-left: 5px;
+        }
+    
+    }
+}
+
+.playerDetailsContainer{
+    margin-top: 15px;
+
+    .playerDetails{
+        height: 40px;
+        box-shadow: 0px 0px 6px colors.$lightgray;
+        display: flex;
+        margin-bottom: 10px;
+        border-radius: 2px;
+
+        input{
+            width: 265px;
+            border: none;
+            padding: 10px;
+            font-weight: 500;
+            font-size: 18px;
+        }
+
+        .identifier{
+            height: 40px;
+            font-weight: 600;
+            width: 40px;
+            display: grid;
+            place-items: center;
+            color: white;
+        }
+
+        
+    }
+}
+

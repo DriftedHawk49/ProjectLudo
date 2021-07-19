@@ -1,0 +1,8 @@
+<h2 class="modalHeader">Get Started</h2>
+
+<form [formGroup] = "nameForm" (ngSubmit)="setUsername()">
+<label class="labelField1" for="username">Enter your Name</label>
+<input formControlName="username" minlength="3" requried maxlength="15" placeholder="Type Something..." class="textField1" type="text" name="username" id="username">
+<span *ngIf="username?.invalid&&(username?.touched||username?.dirty)" class="error">Please Enter Your Name.</span>
+<button type="submit" matRipple class="standard-btn">LET'S GO</button>
+</form>

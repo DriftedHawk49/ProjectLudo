@@ -1,0 +1,45 @@
+<header>
+
+    <h1>Play Online</h1>
+
+    <span (click)="findRooms()" matRipple class="findrooms">FIND ROOMS
+        <span class="counter">{{roomNos}}</span>
+    </span>
+
+</header>
+
+<section class="joiner">
+
+    <div class="createroom">
+        <h2>Create Room</h2>
+        <form [formGroup]="createRoomForm" (ngSubmit)="createNewRoom()">
+            <label class="labelField" for="roomname">Enter Room Name</label>
+            <input class="textField" type="text" formControlName="roomname" required maxlength="15" name="roomname"
+                id="roomname" placeholder="Room Name">
+            <span *ngIf="roomname?.invalid&&(roomname?.touched || roomname?.dirty)" class="error">Please Enter Room
+                Name</span>
+            <button [disabled]="roomname?.invalid" matRipple type="submit" class="standard-btn">CREATE ROOM</button>
+        </form>
+    </div>
+
+    <span class="separator">OR</span>
+
+    <div class="joinroom">
+        <h2>Join Room</h2>
+        <form [formGroup]="joinRoomForm" (ngSubmit)="joinRoom()">
+            <label class="labelField" for="roomcode">Enter Room Code</label>
+            <input class="textField" type="text" formControlName="roomcode" required minlength="8" maxlength="8"
+                name="roomcode" id="roomcode" placeholder="Eg: asdhbjg5">
+            <span *ngIf="roomcode?.invalid&&(roomcode?.dirty || roomcode?.touched)" class="error">Please Enter 8 Digit
+                RoomCode</span>
+            <button matRipple [disabled]="roomcode?.invalid" type="submit" class="standard-btn">JOIN ROOM</button>
+        </form>
+    </div>
+</section>
+
+
+<div [matBadge]="invitations.invitations.length" [matBadgeHidden]="invitations.invitations.length==0" matBadgeColor="warn" matBadgeOverlap="true" class="buttonContainer">
+    <button (click)="checkInvites()" matRipple class="invites">
+        Invites <img src="../../../assets/invite.svg" alt="invite">
+    </button>
+</div>

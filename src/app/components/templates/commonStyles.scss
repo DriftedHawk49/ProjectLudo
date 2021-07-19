@@ -1,0 +1,239 @@
+@use '../../colors';
+
+.sbBlack {
+    border: 1px solid colors.$black;
+}
+
+.dbBlack {
+    border: 3px solid colors.$black;
+}
+
+.sbRed {
+    border: 1px solid colors.$red;
+}
+
+.dbRed {
+    border: 3px solid colors.$red;
+}
+
+.sbGreen {
+    border: 1px solid colors.$green;
+}
+
+.dbGreen {
+    border: 3px solid colors.$green;
+}
+
+.sbYellow {
+    border: 1px solid colors.$yellow;
+}
+
+.dbYellow {
+    border: 3px solid colors.$yellow;
+}
+
+.sbBlue {
+    border: 1px solid colors.$blue;
+}
+
+.dbBlue {
+    border: 3px solid colors.$blue;
+}
+
+.greenShadow {
+    box-shadow: 0px 0px 6px colors.$lightgreen;
+}
+
+.yellowShadow {
+    box-shadow: 0px 0px 6px colors.$lightyellow;
+}
+
+.blueShadow {
+    box-shadow: 0px 0px 6px colors.$lightblue;
+}
+
+.redShadow {
+    box-shadow: 0px 0px 6px colors.$lightred;
+}
+
+.yellowHomeEntry,
+.greenHomeEntry,
+.redHomeEntry,
+.blueHomeEntry {
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.yellowHomeEntry {
+    background-image: url("./../../../assets/directions/yellow.svg");
+    border: 1px solid colors.$yellow;
+}
+
+.greenHomeEntry {
+    background-image: url("./../../../assets/directions/green.svg");
+    border: 1px solid colors.$green;
+}
+
+.redHomeEntry {
+    background-image: url("./../../../assets/directions/red.svg");
+    border: 1px solid colors.$red;
+}
+
+.blueHomeEntry {
+    background-image: url("./../../../assets/directions/blue.svg");
+    border: 1px solid colors.$blue;
+}
+
+.highlight {
+    background-color: colors.$black !important;
+}
+
+.tile {
+    height: 50px;
+    width: 50px;
+    border-radius: 5px;
+    background-color: white;
+    display: grid;
+    place-items: center;
+
+    &:hover {
+        background-color: rgb(245, 245, 245);
+    }
+}
+
+.gameContainer {
+    display: grid;
+    grid-template-columns: 825px 330px;
+    gap: 40px;
+}
+
+.singleToken {
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-items: center;
+    border-radius: 2px;
+
+    span {
+        color: white;
+        font-weight: 500;
+    }
+}
+
+.bgred {
+    background-color: colors.$red;
+}
+
+.bgyellow {
+    background-color: colors.$yellow;
+    color: colors.$black;
+}
+
+.bggreen {
+    background-color: colors.$green;
+}
+
+.bgblue {
+    background-color: colors.$blue;
+}
+
+.eligible {
+    background-color: colors.$black;
+    cursor: pointer;
+}
+
+.disabled {
+    cursor: not-allowed;
+}
+
+.multipleTokenContainer {
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    width: 40px;
+    height: 40px;
+    div {
+        width: 20px;
+        height: 20px;
+        display: grid;
+        place-items: center;
+        font-size: 13px;
+        font-weight: 500;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    .tile {
+        height: 40px;
+        width: 40px;
+    }
+
+    .gameContainer {
+        display: block;
+        width: 675px;
+        margin: 10px auto;
+        grid-template-columns: none;
+    }
+
+    .singleToken {
+        width: 30px;
+        height: 30px;
+    }
+
+    .multipleTokenContainer {
+        width: 30px;
+        height: 30px;
+        div {
+            width: 15px;
+            height: 15px;
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .dbBlack {
+        border: 2px solid colors.$black;
+    }
+
+    .dbRed {
+        border: 2px solid colors.$red;
+    }
+
+    .dbGreen {
+        border: 2px solid colors.$green;
+    }
+
+    .dbYellow {
+        border: 2px solid colors.$yellow;
+    }
+
+    .dbBlue {
+        border: 2px solid colors.$blue;
+    }
+
+    .greenShadow {
+        box-shadow: 0px 0px 5px colors.$lightgreen;
+    }
+
+    .yellowShadow {
+        box-shadow: 0px 0px 5px colors.$lightyellow;
+    }
+
+    .blueShadow {
+        box-shadow: 0px 0px 5px colors.$lightblue;
+    }
+
+    .redShadow {
+        box-shadow: 0px 0px 5px colors.$lightred;
+    }
+
+    .gameContainer {
+        display: block;
+        width: 350px;
+        margin: 10px auto;
+        grid-template-columns: none;
+    }
+    .tile {
+        border-radius: 2px;
+    }
+}

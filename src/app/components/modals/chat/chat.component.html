@@ -1,0 +1,29 @@
+<header class="dialogHeader">
+    <h1>Chat</h1>
+    <img (click)="closeDialog()" class="close-btn" src="../../../../assets/red-cross.svg" alt="close">
+</header>
+
+<div #chatContainer class="chatContainer">
+
+    <div *ngFor="let chat of chatManager.chats"
+    [ngClass]="{
+        'align-right': chat.senderid==user.userid
+    }"
+    class="chat">
+        <p [ngClass]="{
+            'bgred': chat.sendercolor==2,
+            'bgyellow': chat.sendercolor==1,
+            'bgblue': chat.sendercolor==4,
+            'bggreen': chat.sendercolor==3
+        }" class="bgyellow ">{{chat.message}}</p>
+        <span>{{chat.sendername}}</span>
+    </div>
+</div>
+
+<form [formGroup]="messenger" (ngSubmit)="sendText()">
+    <div class="textbox">
+        <input formControlName="textChat" placeholder="Say Something..." type="text" required maxlength="50" name="chat"
+            id="chat">
+        <button type="submit">SEND</button>
+    </div>
+</form>

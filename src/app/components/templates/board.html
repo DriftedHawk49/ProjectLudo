@@ -1,0 +1,100 @@
+<audio id="dicerollsound" src="../../../assets/sounds/dice_roll.mp3"></audio>
+<audio id="dualsound" src="../../../assets/sounds/dual.mp3"></audio>
+<audio id="normalsound" src="../../../assets/sounds/normal.mp3"></audio>
+<audio id="eliminatesound" src="../../../assets/sounds/eliminate.mp3"></audio>
+<audio id="homesound" src="../../../assets/sounds/home.mp3"></audio>
+<audio id="playerleftsound" src="../../../assets/sounds/player_left.mp3"></audio>
+<audio id="turnchangesound" src="../../../assets/sounds/turnchange.mp3"></audio>
+
+
+<div class="gameContainer">
+
+    <div class="boardContainer">
+        <div *ngFor="let row of controller.gameboard; index as i" class="boardRow">
+            <div (click)="tileClick(i,j)" *ngFor="let tile of row; index as j" class="tile" [ngClass]="{              
+                'sbBlack': tile.type==1,                
+                'dbBlack': tile.type==2&&tile.color==0,
+                'sbRed redShadow': tile.type==4&&tile.color==2,
+                'dbRed': (tile.type==2)&&tile.color==2,
+                'sbGreen greenShadow': tile.type==4&&tile.color==3,                
+                'dbGreen': (tile.type==2)&&tile.color==3,
+                'sbYellow yellowShadow': tile.type==4&&tile.color==1,                
+                'dbYellow': (tile.type==2)&&tile.color==1,                
+                'sbBlue blueShadow': tile.type==4&&tile.color==4,
+                'dbBlue': (tile.type==2)&&tile.color==4,
+                'bgred': tile.type==3&&tile.color==2,
+                'bgblue': tile.type==3&&tile.color==4,
+                'bgyellow': tile.type==3&&tile.color==1,
+                'bggreen': tile.type==3&&tile.color==3,
+                'yellowHomeEntry': tile.type==5&&tile.color==1,
+                'redHomeEntry': tile.type==5&&tile.color==2,
+                'greenHomeEntry': tile.type==5&&tile.color==3,
+                'blueHomeEntry': tile.type==5&&tile.color==4,
+                'yellowShadow': tile.type==0&&tile.color==1,
+                'redShadow': tile.type==0&&tile.color==2,
+                'greenShadow': tile.type==0&&tile.color==3, 
+                'blueShadow': tile.type==0&&tile.color==4,
+                'disabled': !tile.eligible,
+                'eligible': tile.eligible
+            }">
+
+                <div *ngIf="tile.tokenPresent&&tile.tokenType==1&&tile.type!=3&&tile.tokens.SINGLE!=undefined">
+                    <div class="singleToken" [ngClass]="{
+                        'bgred': tile.tokens.SINGLE.color==2,
+                        'bggreen': tile.tokens.SINGLE.color==3,
+                        'bgyellow': tile.tokens.SINGLE.color==1,
+                        'bgblue': tile.tokens.SINGLE.color==4
+                    }">
+                        <span *ngIf="tile.tokens.SINGLE.color==2">R</span>
+                        <span *ngIf="tile.tokens.SINGLE.color==1">Y</span>
+                        <span *ngIf="tile.tokens.SINGLE.color==4">B</span>
+                        <span *ngIf="tile.tokens.SINGLE.color==3">G</span>
+
+                    </div>
+                </div>
+
+                <div *ngIf="tile.type==3">
+                    <div class="singleToken" [ngClass]="{
+                        'bgred': tile.color==2,
+                        'bggreen': tile.color==3,
+                        'bgyellow': tile.color==1,
+                        'bgblue': tile.color==4
+                    }">
+                        <span *ngIf="tile.tokens.SINGLE!=undefined">1</span>
+                        <span *ngIf="tile.tokens.SINGLE==undefined">{{
+                            tile.tokens.MULTIPLE[tile.color].length
+                            }}</span>
+                    </div>
+                </div>
+
+                <div *ngIf="tile.tokenPresent&&tile.tokenType==2&&tile.type!=3">
+
+                    <div class="multipleTokenContainer">
+                        <div *ngIf="tile.tokens.MULTIPLE[2].length" class="bgred">
+                            {{tile.tokens.MULTIPLE[2].length}}
+                        </div>
+                        <div *ngIf="tile.tokens.MULTIPLE[1].length" class="bgyellow">
+                            {{tile.tokens.MULTIPLE[1].length}}
+                        </div>
+                        <div *ngIf="tile.tokens.MULTIPLE[3].length" class="bggreen">
+                            {{tile.tokens.MULTIPLE[3].length}}
+                        </div>
+                        <div *ngIf="tile.tokens.MULTIPLE[4].length" class="bgblue">
+                            {{tile.tokens.MULTIPLE[4].length}}
+                        </div>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- <button (click)="testFunction()">TEST</button> -->
+
+    <app-dice-and-stats (diceThrown)="diceClick($event)"></app-dice-and-stats>
+
+</div>
+
+<app-chat-button *ngIf="!controller.offline"></app-chat-button>
+<app-voice-chat *ngIf="!controller.offline"></app-voice-chat>

@@ -1,0 +1,45 @@
+@use "../../../colors";
+
+
+
+
+.roomsContainer{
+    margin-top: 15px;
+    max-height: 450px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    scrollbar-width: thin;
+    &::-webkit-scrollbar{
+        width: 0px;
+    }
+    .room{
+        border-radius: 2px;
+        box-shadow: 0px 0px 6px colors.$lightgray;
+        padding: 8px 10px;
+        margin-bottom: 10px;
+        width: 98%;
+        margin: 10px auto;
+        
+        display: grid;
+        grid-template-columns: 40px 170px 50px;
+        gap: 10px;
+        align-items: center;
+        
+        .noOfPlayers{
+            font-weight: bolder;
+        }
+
+        .join{
+            height: 24px;
+            background-color: colors.$green;
+            color: white;
+            border: none;
+            border-radius: 2px;
+            font-size: 15px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+
+    }
+}

@@ -1,0 +1,264 @@
+@use '../../colors';
+
+.tag {
+    min-width: 50px;
+    min-height: 50px;
+    display: grid;
+    place-items: center;
+    color: white;
+    font-weight: 500;
+    border-radius: 5px;
+    font-size: 20px;
+    margin-right: 10px;
+}
+
+.yellowPlayer,
+.redPlayer,
+.greenPlayer,
+.bluePlayer {
+    width: 330px;
+    min-height: 50px;
+    border-radius: 5px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    padding-right: 10px;
+}
+
+progress {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    border: none;
+    height: 3px;
+    width: 100%;
+    margin-top: 5px;
+    display: block;
+
+    &::-webkit-progress-bar {
+        background: none;
+    }
+}
+
+.restContainer {
+    width: 270px;
+
+    .nameAndMic {
+        display: flex;
+        margin-top: 3px;
+        justify-content: space-between;
+        img {
+            width: 10px;
+        }
+    }
+
+    .statusContainer {
+        text-align: right;
+        .disconnected,
+        .prize {
+            font-size: 12px;
+            font-family: "Nunito";
+            font-weight: 600;
+            img {
+                width: 10px;
+            }
+        }
+
+        .disconnected {
+            margin-right: 10px;
+            color: red;
+            font-size: 12px;
+        }
+
+        .prize {
+            img {
+                width: 15px;
+                vertical-align: middle;
+            }
+        }
+    }
+}
+
+.diceAndStatsContainer {
+    .roomname {
+        font-weight: 500;
+    }
+
+    .playerContainer {
+        display: flex;
+        flex-direction: column;
+
+        .players1 {
+            .yellowPlayer {
+                background-color: colors.$lightyellow;
+                .tag {
+                    background-color: colors.$verydarkyellow;
+                }
+
+                progress {
+                    &::-webkit-progress-value {
+                        background-color: colors.$verydarkyellow;
+                    }
+
+                    &::-moz-progress-bar {
+                        background-color: colors.$verydarkyellow;
+                    }
+                }
+            }
+
+            .redPlayer {
+                background-color: colors.$lightred;
+
+                progress {
+                    &::-webkit-progress-value {
+                        background-color: colors.$red;
+                    }
+
+                    &::-moz-progress-bar {
+                        background-color: colors.$red;
+                    }
+                }
+            }
+        }
+
+        .diceContainer {
+            margin-bottom: 10px;
+            order: 3;
+            /* Activate LATER */
+            text-align: center;
+            img {
+                cursor: pointer;
+            }
+        }
+
+        .players2 {
+            .greenPlayer {
+                background-color: colors.$lightgreen;
+
+                progress {
+                    &::-webkit-progress-value {
+                        background-color: colors.$green;
+                    }
+
+                    &::-moz-progress-bar {
+                        background-color: colors.$green;
+                    }
+                }
+            }
+
+            .bluePlayer {
+                background-color: colors.$lightblue;
+
+                progress {
+                    &::-webkit-progress-value {
+                        background-color: colors.$verydarkblue;
+                    }
+
+                    &::-moz-progress-bar {
+                        background-color: colors.$verydarkblue;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    .yellowPlayer,
+    .redPlayer,
+    .greenPlayer,
+    .bluePlayer {
+        width: 260px;
+    }
+
+    .restContainer {
+        width: 210px;
+    }
+
+    .diceAndStatsContainer {
+        .roomname {
+            font-weight: 500;
+        }
+        .playerContainer {
+            justify-content: space-between;
+            flex-direction: row;
+            .diceContainer {
+                margin-bottom: 0px;
+                order: initial;
+            }
+        }
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    .tag {
+        min-width: 20px;
+        min-height: 20px;
+        font-size: 15px;
+        margin-right: 10px;
+        border-radius: 2px;
+    }
+
+    .yellowPlayer,
+    .redPlayer,
+    .greenPlayer,
+    .bluePlayer {
+        width: 130px;
+        min-height: 20px;
+        border-radius: 2px;
+    }
+
+    progress {
+        margin-top: 2px;
+    }
+
+    .restContainer {
+        width: 100px;
+    }
+
+    .diceAndStatsContainer {
+        .roomname {
+            font-weight: 500;
+        }
+        .playerContainer {
+            justify-content: space-between;
+            flex-direction: row;
+
+            .diceContainer {
+                margin-bottom: 0px;
+                order: initial;
+                img {
+                    width: 60px;
+                }
+            }
+        }
+    }
+
+    .restContainer {
+        width: 100px;
+        .nameAndMic {
+            font-size: 10px;
+            margin-top: 1px;
+            img {
+                width: 10px;
+            }
+        }
+        .statusContainer {
+            text-align: right;
+            .disconnected,
+            .prize {
+                font-size: 10px;
+                img {
+                    width: 10px;
+                    vertical-align: middle;
+                }
+            }
+            .disconnected {
+                margin-right: 0px;
+                display: block;
+                color: red;
+                font-size: 10px;
+            }
+        }
+    }
+}

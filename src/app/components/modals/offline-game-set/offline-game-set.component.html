@@ -1,0 +1,62 @@
+<h1 class="modalHeader">Play Offline</h1>
+
+<form [formGroup]="createOfflineRoomForm">
+
+    <label class="labelField1" for="roomname">
+        Create Room
+    </label> 
+
+    <input class="textField1" placeholder="Enter Room Name" formControlName="roomname" required maxlength="15" type="text" name="roomname" id="roomname">
+
+    <div class="numberOfPlayers">
+        <span>Number of Players</span>
+        <button [matMenuTriggerFor]="noplayers" class="selectorButton">
+            {{noOfPlayers}}
+            <img src="./../../../../assets/dropdown.svg" alt="dropdown">
+        </button>
+    </div>
+
+    <!-- Menu 1 -->
+    <mat-menu #noplayers="matMenu" xPosition="before">
+        <button (click)="setNumberOfPlayers(2)" mat-menu-item>2</button>
+        <button (click)="setNumberOfPlayers(3)" mat-menu-item>3</button>
+        <button (click)="setNumberOfPlayers(4)" mat-menu-item>4</button>
+    </mat-menu>
+
+    <div class="gameType">
+        <span>Game Type</span>
+        <button [matMenuTriggerFor]="gametype" class="selectorButton">
+            <span *ngIf="gameType==2">Classic</span>
+            <span *ngIf="gameType==1">Mini</span>
+            <img src="./../../../../assets/dropdown.svg" alt="dropdown">
+        </button>
+    </div>
+    
+    <!-- Menu 2 -->
+    <mat-menu #gametype="matMenu" xPosition="before">
+        <button (click)="selectGame(2)" mat-menu-item>Classic</button>
+        <button (click)="selectGame(1)" mat-menu-item>Mini</button>
+    </mat-menu>
+
+    <div class="playerDetailsContainer">
+        <section class="playerDetails">
+            <span class="identifier yellow">Y</span>
+            <input class="nunito" ype="text" name="playerName" [ngModelOptions]="{standalone: true}" placeholder="Enter Player Name" requried [(ngModel)]="yellowPlayerName" id="">
+        </section>
+        <section class="playerDetails">
+            <span class="identifier red">R</span>
+            <input class="nunito" ype="text" name="playerName" [ngModelOptions]="{standalone: true}" placeholder="Enter Player Name" requried [(ngModel)]="redPlayerName" id="">
+        </section>
+        <section *ngIf="noOfPlayers>=3" class="playerDetails">
+            <span class="identifier green">G</span>
+            <input class="nunito" ype="text" name="playerName" [ngModelOptions]="{standalone: true}" placeholder="Enter Player Name" requried [(ngModel)]="greenPlayerName" id="">
+        </section>
+        <section *ngIf="noOfPlayers==4" class="playerDetails">
+            <span class="identifier blue">B</span>
+            <input class="nunito" ype="text" name="playerName" [ngModelOptions]="{standalone: true}" placeholder="Enter Player Name" requried [(ngModel)]="bluePlayerName" id="">
+        </section>
+    </div>
+
+    <button matRipple (click)="createOfflineSession()" class="standard-btn green">START</button>
+
+</form>

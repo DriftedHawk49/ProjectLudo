@@ -1,0 +1,19 @@
+<header class="dialogHeader">
+    <h1>Find Rooms</h1>
+    <img (click)="closeDialog()" class="close-btn" src="../../../../assets/red-cross.svg" alt="close">
+</header>
+
+<section class="invitesContainer">
+
+    <div *ngFor="let invite of invitations.invitations; let i = index" class="invite">
+        <span class="playerCount">{{invite.noOfPlayers}}<img src="../../../../assets/group.svg" alt="group"></span>
+        <div class="info">
+            <h4>{{invite.roomname}}</h4>
+            <span>{{invite.sendername}}</span>
+        </div>
+        <div class="btn-container">
+            <button matRipple (click)="acceptRequest(invite.roomid,i)" class="accept">ACCEPT</button>
+            <img matRipple (click)="rejectRequest(i)" src="../../../../assets/red-cross.svg" alt="cross">
+        </div>
+    </div>
+</section>

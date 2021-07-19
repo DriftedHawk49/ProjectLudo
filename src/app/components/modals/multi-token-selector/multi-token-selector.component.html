@@ -1,0 +1,17 @@
+<div class="tokenContainer">
+    <h2>Select Token</h2>
+    <div class="tokens">
+        <span (click)="closeTheInstance(2)" [ngClass]="{
+            'yellowToken': data.color==1,
+            'redToken': data.color==2,
+            'greenToken': data.color==3,
+            'blueToken': data.color==4
+        }" class="token"> 2 </span>
+        <span (click)="closeTheInstance(1)" [ngClass]="{
+            'yellowToken': data.color==1,
+            'redToken': data.color==2,
+            'greenToken': data.color==3,
+            'blueToken': data.color==4
+        }" class="token"> {{data.signature}} </span>
+    </div>
+</div>

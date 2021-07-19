@@ -1,0 +1,447 @@
+@use "../../colors";
+
+header {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+    margin-bottom: 10px;
+
+    .roominfo {
+        h1 {
+            font-size: 50px;
+            margin: 0px;
+            line-height: 1;
+        }
+        span {
+            font-size: 18px;
+        }
+    }
+
+    .inviteplayers {
+        border: 2px solid colors.$black;
+        padding: 10px 20px;
+        background-color: white;
+        color: colors.$black;
+        border-radius: 3px;
+        font-size: 18px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+}
+
+.roomstatuscontainer {
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 30px;
+    .roomstatus {
+        width: 250px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        span {
+            font-size: 18px;
+        }
+
+        .statuscontainer {
+            span {
+                font-size: 15px;
+            }
+        }
+    }
+}
+
+.allcontainer {
+    display: flex;
+    justify-content: space-between;
+
+    .players {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        width: 725px;
+    }
+
+    .info {
+        width: 250px;
+        background-color: rgba(255, 255, 255, 0.7);
+    }
+}
+
+.taghost {
+    background-color: colors.$black;
+    font-size: 12px;
+    padding: 2px 5px;
+    border-radius: 20px;
+    color: white;
+    font-weight: 500;
+    margin-top: -21px;
+    margin-bottom: 3px;
+}
+
+.marker {
+    width: 100px;
+    height: 100px;
+    border-radius: 5px;
+    display: grid;
+    place-items: center;
+    font-size: 50px;
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+.player {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.yellowmarker {
+    background-color: colors.$verydarkyellow;
+}
+
+.redmarkerconnected {
+    background-color: colors.$red;
+}
+
+.greenmarkerconnected {
+    background-color: colors.$darkgreen;
+}
+
+.bluemarkerconnected {
+    background-color: colors.$verydarkblue;
+}
+
+.greenmarkerdisconnected {
+    border: 5px solid colors.$darkgreen;
+    background-color: white;
+}
+
+.redmarkerdisconnected {
+    border: 5px solid colors.$red;
+    background-color: white;
+}
+
+.bluemarkerdisconnected {
+    border: 5px solid colors.$verydarkblue;
+    background-color: white;
+}
+
+.innerhost {
+    display: none;
+}
+
+.begin {
+    background-color: colors.$blue;
+    border: none;
+    color: white;
+    font-weight: 600;
+    border-radius: 5px;
+    font-size: 20px;
+    padding: 0px 30px;
+    height: 60px;
+    cursor: pointer;
+}
+
+.begin[disabled] {
+    background-color: colors.$lightgray;
+    color: colors.$black;
+    cursor: not-allowed;
+}
+
+.nameinfo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-weight: 500;
+    img {
+        width: 15px;
+        margin-top: 5px;
+    }
+}
+
+.buttoncontainer {
+    display: grid;
+    place-items: center;
+    margin-top: 50px;
+    .buttons {
+        display: flex;
+    }
+}
+
+.gametype {
+    margin-right: 30px;
+    .label {
+        font-size: 13px;
+        display: block;
+        margin-top: -17px;
+        margin-bottom: 3px;
+    }
+
+    .selector {
+        display: block;
+        padding: 18px 10px 18px 20px;
+        background-color: white;
+        border-radius: 5px;
+        font-size: 20px;
+        cursor: pointer;
+        box-shadow: 0px 0px 6px colors.$lightgray;
+        img {
+            margin-left: 10px;
+        }
+    }
+}
+
+.status {
+    font-size: 20px;
+    font-weight: 500;
+}
+
+.information {
+    h4 {
+        margin: 0px;
+        font-weight: bolder;
+    }
+
+    p {
+        margin-top: 0px;
+        margin-bottom: 10px;
+    }
+}
+
+.rules {
+    display: block;
+    width: 100%;
+    font-size: 18px;
+    font-family: "Rubik", sans-serif;
+    background-color: colors.$black;
+    border: none;
+    color: white;
+    padding: 10px 0px;
+    border-radius: 5px;
+    font-weight: 500;
+    cursor: pointer;
+    img {
+        vertical-align: middle;
+        margin-right: 5px;
+    }
+}
+
+@media only screen and (max-width: 1199px) {
+    .roomstatuscontainer {
+        justify-content: flex-start;
+        margin-bottom: 40px;
+    }
+
+    .allcontainer {
+        display: block;
+
+        .players {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-between;
+            width: 100%;
+        }
+
+        .info {
+            width: 100%;
+            margin-top: 30px;
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .information {
+            display: flex;
+            justify-content: space-between;
+
+            .legend {
+                width: 170px;
+            }
+            h4 {
+                margin: 0px;
+                font-weight: bolder;
+            }
+
+            p {
+                font-size: 13px;
+                margin-bottom: 0px;
+            }
+        }
+    }
+
+    .rulescontainer {
+        margin-top: 20px;
+        display: grid;
+        place-items: center;
+    }
+
+    .rules {
+        width: 300px;
+    }
+}
+
+@media only screen and (max-width: 767px) {
+    header {
+        .roominfo {
+            h1 {
+                font-size: 20px;
+                font-weight: bolder;
+            }
+            span {
+                font-size: 13px;
+            }
+        }
+
+        .inviteplayers {
+            padding: 5px 15px;
+            font-size: 15px;
+        }
+    }
+
+    .roomstatuscontainer {
+        display: block;
+        margin-bottom: 15px;
+        .roomstatus {
+            width: 100%;
+
+            span {
+                font-size: 20px;
+            }
+
+            .statuscontainer {
+                span {
+                    font-size: 20px;
+                }
+            }
+        }
+    }
+
+    .allcontainer {
+        display: block;
+
+        .players {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: flex-start;
+            width: 100%;
+        }
+
+        .info {
+            margin-top: 10px;
+        }
+    }
+
+    .taghost {
+        display: none;
+    }
+
+    .marker {
+        width: 40px;
+        height: 40px;
+        border-radius: 2px;
+        font-size: 20px;
+        margin-right: 10px;
+        margin-bottom: 0px;
+    }
+
+    .player {
+        flex-direction: row;
+        align-items: center;
+        width: 100%;
+        margin-bottom: 10px;
+        padding-right: 10px;
+        border-radius: 2px;
+    }
+
+    .innerhost {
+        display: block;
+        font-weight: bolder;
+        font-size: 10px;
+    }
+
+    .nameinfo {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+        justify-content: space-between;
+        font-weight: 500;
+        img {
+            width: 12px;
+            margin-top: 5px;
+        }
+    }
+
+    .gametype {
+        margin-right: 20px;
+
+        .selector {
+            padding: 7px 10px;
+            border-radius: 2px;
+            img {
+                margin-left: 5px;
+            }
+        }
+    }
+
+    .buttoncontainer {
+        margin-top: 20px;
+    }
+
+    .begin {
+        background-color: colors.$blue;
+        border: none;
+        color: white;
+        font-weight: 600;
+        border-radius: 2px;
+        font-size: 15px;
+        padding: 0px 30px;
+        height: 40px;
+        cursor: pointer;
+    }
+
+    .yellowplayer {
+        background-color: colors.$lightyellow;
+    }
+
+    .redplayer {
+        background-color: colors.$lightred;
+    }
+
+    .greenplayer {
+        background-color: colors.$lightgreen;
+    }
+
+    .blueplayer {
+        background-color: colors.$lightblue;
+    }
+
+    .information {
+        flex-wrap: wrap;
+
+        .legend {
+            width: 160px;
+            margin-bottom: 5px;
+        }
+        h4 {
+            font-size: 13px;
+        }
+
+        p {
+            font-size: 10px;
+        }
+    }
+
+    .rulescontainer {
+        margin-top: 10px;
+    }
+
+    .rules {
+        width: 100%;
+        padding: 5px 0px;
+        font-size: 15px;
+        border-radius: 2px;
+        img {
+            width: 20px;
+        }
+    }
+}

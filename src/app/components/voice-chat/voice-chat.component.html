@@ -1,0 +1,30 @@
+<audio class="vc voicechat1" autoplay ></audio>
+<audio class="vc voicechat2" autoplay ></audio>
+<audio class="vc voicechat3" autoplay></audio>
+
+
+<div [ngClass]="{
+    'lredbg': mute,
+    'lgreenbg': !mute
+}" class="container">
+    <button [ngClass]="{
+        'redbg': mute, 
+        'greenbg': !mute
+    }" matRipple (click)="toggleMute()">
+        <img *ngIf="!mute" src="../../../assets/micUnmuteWhite.svg" alt="Mic unmute">
+        <img *ngIf="mute" src="../../../assets/micMuteWhite.svg" alt="Mic mute">
+    </button>
+
+    <div class="restContainer">
+        <span class="name">
+            Mic Status
+        </span>
+        <span *ngIf="mute" class="status">
+            MUTED
+        </span>
+        <span *ngIf="!mute" class="status">
+            UNMUTED
+        </span>
+    </div>
+
+</div>

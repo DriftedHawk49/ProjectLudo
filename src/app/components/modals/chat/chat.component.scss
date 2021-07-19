@@ -1,0 +1,82 @@
+@use "../../../colors";
+
+.chatContainer{
+    margin-top: 15px;
+    max-height: 400px;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+    padding: 5px;
+    scrollbar-width: thin;
+    &::-webkit-scrollbar{
+        width: 0px;
+    }
+}
+
+.chat{
+    width: 100%;
+    margin-bottom: 10px;
+    p{
+        word-wrap: normal;
+        padding: 5px;
+        border-radius: 5px;
+        margin: 0px;
+        width: 70%;
+        color: white;
+    }
+    span{
+        color: colors.$black;
+        font-size: 13px;
+        font-weight: 600;
+    }
+}
+
+.textbox{
+    width: 100%;
+    display: grid;
+    grid-template-columns: 240px auto;
+    gap: 10px;
+    padding: 5px;
+    border: 2px solid colors.$black;
+
+    input{
+        border: none;
+        font-size: 16px;
+    }
+
+    button{
+        border-radius: 2px;
+        background-color: colors.$black;
+        color: white;
+        cursor: pointer;
+        border: none;
+        padding: 3px;
+    }
+    
+}
+
+.bgred{
+    background-color: colors.$red;
+}
+
+.bgblue{
+    background-color: colors.$blue;
+}
+
+.bggreen{
+    background-color: colors.$green;
+}
+
+.bgyellow{
+    background-color: colors.$verydarkyellow;
+}
+
+.align-right{
+    p{
+        margin-left: auto!important;
+    }
+
+    span{
+        display: block;
+        text-align: right;
+    }
+}

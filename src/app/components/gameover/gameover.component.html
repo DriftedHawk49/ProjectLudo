@@ -1,0 +1,38 @@
+<div>
+    <header>
+        <h1>Game Over</h1>
+        <p>
+            <span class="roomname">{{controller.roomname}}</span> &nbsp; &nbsp; &nbsp;
+            <span *ngIf="!controller.offline" class="roomid">#{{controller.roomid}}</span>
+        </p>
+    </header>
+
+    <div class="playersContainer">
+        <div *ngFor="let player of controller.players" class="player">
+            <span *ngIf="player.host" class="host">Host</span>
+            <p [ngClass]="{
+                'yellowbg': player.color==1,
+                'redbg': player.color==2,
+                'greenbg': player.color==3,
+                'bluebg': player.color==4
+            }" class="marker">{{player.rank}}</p>
+            <span class="playername"> {{player.username}} <span *ngIf="player.userid==user.userid">(You)</span> </span>
+            <img *ngIf="player.mute&&!controller.offline" src="../../../assets/micMute.svg" alt="micstatus"
+                class="micstatus">
+            <img *ngIf="!player.mute&&!controller.offline" src="../../../assets/micUnmute.svg" alt="micstatus"
+                class="micstatus">
+            <span *ngIf="!player.online&&!controller.offline" class="disconnected"><img
+                    src="../../../assets/disconnect.svg" alt="disconnected"> Disconnected</span>
+        </div>
+    </div>
+
+    <div class="buttonsContainer">
+        <button matRipple (click)="endGame()" class="endgame">END GAME</button>
+        <span *ngIf="currentPlayer.host">OR</span>
+        <button *ngIf="currentPlayer.host" matRipple (click)="playAgain()" class="playagain">PLAY AGAIN</button>
+    </div>
+</div>
+
+
+<app-chat-button *ngIf="!controller.offline"></app-chat-button>
+<app-voice-chat *ngIf="!controller.offline"></app-voice-chat>

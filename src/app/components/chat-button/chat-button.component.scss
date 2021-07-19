@@ -1,0 +1,46 @@
+@use "../../colors";
+
+.buttonContainer{
+    position: fixed;
+    bottom: 50px;
+    right: 50px;
+}
+
+button{
+    display: block;
+    cursor: pointer;
+    padding: 5px 5px;
+    font-size: 25px;
+    background-color: white;
+    border-radius: 5px;
+    border: 2px solid colors.$black;
+    img{
+        vertical-align: middle;
+        width: 30px;
+        margin-right: 10px;
+    }
+}
+
+@media only screen and (max-width: 1199px){
+
+}
+
+
+@media only screen and (max-width: 767px){
+
+    .buttonContainer{
+        bottom: 20px;
+        right: 20px;
+    }
+
+    button{
+        font-size: 15px;
+        border-radius: 2px;
+
+        img{
+            margin-right: 5px;
+            width: 20px;
+        }
+    }
+
+}

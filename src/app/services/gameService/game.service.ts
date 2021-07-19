@@ -18,8 +18,8 @@ const maxSteps = {
 
 const diceURLlist: any = {
   1: [
-    'assets/yellow-dice/one.svg',
     'assets/yellow-dice/default.svg',
+    'assets/yellow-dice/one.svg',
     'assets/yellow-dice/two.svg',
     'assets/yellow-dice/three.svg',
     'assets/yellow-dice/four.svg',

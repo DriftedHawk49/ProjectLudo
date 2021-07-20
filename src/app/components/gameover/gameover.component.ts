@@ -130,10 +130,11 @@ export class GameoverComponent implements OnInit, OnDestroy {
       this.manager.resetManager();
       this.router.navigateByUrl("onlinegame");
     });
+
     socket.on("MUTE_CHANGED", (data) => {
-      for (let i = 0; i < this.manager.players.length; i++) {
-        if (this.manager.players[i].userid == data.userid) {
-          this.manager.players[i].mute = data.status;
+      for (let i = 0; i < this.controller.players.length; i++) {
+        if (this.controller.players[i].userid == data.userid) {
+          this.controller.players[i].mute = data.status;
         }
       }
     });

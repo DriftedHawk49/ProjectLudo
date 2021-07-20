@@ -34,6 +34,7 @@ import { OnlineGameSelectComponent } from './components/online-game-select/onlin
 import { InvitesComponent } from './components/modals/invites/invites.component';
 import { FindRoomsComponent } from './components/modals/find-rooms/find-rooms.component';
 import { ToinviteComponent } from './components/modals/toinvite/toinvite.component';
+import { RulesComponent } from './components/modals/rules/rules.component';
 
 
 
@@ -61,6 +62,7 @@ import { ToinviteComponent } from './components/modals/toinvite/toinvite.compone
     InvitesComponent,
     FindRoomsComponent,
     ToinviteComponent,
+    RulesComponent,
 
   ],
   imports: [

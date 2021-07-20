@@ -3,8 +3,9 @@ import { UserManagerService } from 'src/app/services/userManagerService/user-man
 import socket from 'src/app/socket';
 import { OnlineManagerService } from 'src/app/services/onlineManagerService/online-manager.service';
 import { GameService } from 'src/app/services/gameService/game.service';
-import Peer from "peerjs";
 import { COLOR } from 'src/app/enum/color.enum';
+import peerSocket from 'src/app/peerSocket';
+import { PeerService } from 'src/app/services/peerService/peer.service';
 
 @Component({
   selector: 'app-voice-chat',
@@ -13,23 +14,22 @@ import { COLOR } from 'src/app/enum/color.enum';
 })
 export class VoiceChatComponent implements OnInit, OnDestroy {
 
+
+
   audioPlayers: any[];
-  peer: any;
   currentPlayerStream: any;
   mute: boolean;
   connections: any;
   currentPlayer: any;
 
-  constructor(private user: UserManagerService, private manager: OnlineManagerService, private controller: GameService) {
+  constructor(private peerManager: PeerService, private user: UserManagerService, private manager: OnlineManagerService, private controller: GameService) {
 
     this.connections = {};
     this.audioPlayers = [];
     this.mute = true;
-    this.peer = new Peer(String(user.userid));
   }
 
   toggleMute() {
-    console.log(this.currentPlayerStream);
     this.mute = !this.mute;
     if (this.currentPlayerStream != undefined) {
       this.currentPlayerStream.getTracks()[0].enabled = !this.mute;
@@ -41,7 +41,7 @@ export class VoiceChatComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    console.log(this.peer);
+
     // START FROM HERE
 
     /* 
@@ -49,6 +49,12 @@ export class VoiceChatComponent implements OnInit, OnDestroy {
       muting has also been enabled.
       use constructor comments to build in ngoninit. remove from constructor.
     */
+
+    peerSocket.auth = {
+      userid: this.user.userid,
+      username: this.user.username
+    }
+    peerSocket.connect();
 
     document.querySelectorAll(".vc").forEach((value) => {
       this.audioPlayers.push({
@@ -58,10 +64,11 @@ export class VoiceChatComponent implements OnInit, OnDestroy {
     });
 
 
-    socket.on("PLAYER_LEFT", (payload: any) => {
-      const nid = payload.toRemove;
+    peerSocket.on("PLAYER_LEFT", (payload: any) => {
+      const nid = payload.userid;
+      console.log(payload)
       if (this.connections[nid] != undefined) {
-        this.connections[nid].close();
+        this.connections[nid].peer.destroy();
         this.connections[nid] = undefined;
         for (let j = 0; j < this.audioPlayers.length; j++) {
           if (this.audioPlayers[j].usedBy == nid) {
@@ -76,111 +83,116 @@ export class VoiceChatComponent implements OnInit, OnDestroy {
       this.currentPlayerStream = stream;
       stream.getTracks()[0].enabled = !this.mute;
 
-      this.peer.on("call", (call: any) => {
-        console.log("call received");
-        this.connections[call.peer] = call;
+      if (this.controller.players.length) {
 
-        call.answer(stream);
-        call.on('stream', (remoteStream: MediaStream) => {
-          for (let j = 0; j < this.audioPlayers.length; j++) {
-            if (this.audioPlayers[j].usedBy == undefined) {
-              this.audioPlayers[j].usedBy = call.peer;
-              this.audioPlayers[j].ap.srcObject = remoteStream;
+        
+
+
+
+
+
+
+
+      } else {
+
+        for (let p of this.manager.players) {
+          if(p.userid!=this.user.userid){
+            
+          let payload = {
+            userid: p.userid,
+            handshake: ""
+          }
+
+          let ip = this.peerManager.createInitiator(this.currentPlayerStream);
+
+          this.connections[String(p.userid)] = {
+            initiator: true,
+            peer: ip
+          };
+
+          ip.on("signal", (hsdata: any) => {
+            payload.handshake = JSON.stringify(hsdata);
+            peerSocket.emit("INITIATE_CONNECTION", payload);
+          });
+
+          ip.on("connect", () => {
+            console.log("PEER CONNECTED");
+          });
+
+          ip.on("stream", (stream: MediaStream) => {
+            console.log("VOICE ENABLED");
+            for (let i = 0; i < this.audioPlayers.length; i++) {
+              if(this.audioPlayers[i].usedBy==undefined){
+                this.audioPlayers[i].usedBy = p.userid;
+                this.audioPlayers[i].ap.srcObject = stream;
+                break;
+              }
+            }
+          });
+
+          ip.on("close", ()=>{
+            console.log("CONNECTION CLOSED");
+          });
+        }
+        }
+      }
+
+
+      peerSocket.on("CONNECTION_ACKNOWLEDGED", (payload: any) => {
+        console.log("CONNECTION ACKNOWLEDGED");
+        console.log(payload);
+        console.log(this.connections);
+        this.connections[payload.userid].peer.signal(JSON.parse(payload.handshake));
+      });
+
+      peerSocket.on("CONNECTION_REQUEST", (payload)=>{
+        let rp = this.peerManager.createReceiver(this.currentPlayerStream);
+        this.connections[payload.userid] = {
+          initiator: false,
+          peer: rp
+        };
+        rp.signal(JSON.parse(payload.handshake));
+        rp.on("signal", (ahsdata: any)=>{
+          peerSocket.emit("ACKNOWLEDGE_CONNECTION", {
+            userid: payload.userid,
+            handshake: JSON.stringify(ahsdata)
+          });
+        });
+        rp.on("connect", ()=>{
+          console.log("PEER CONNECTED");
+        });
+
+        rp.on("stream", (stream: MediaStream)=>{
+          console.log("VOICE ENABLED");
+
+          for (let i = 0; i < this.audioPlayers.length; i++) {
+            if(this.audioPlayers[i].usedBy==undefined){
+              this.audioPlayers[i].usedBy = payload.userid;
+              this.audioPlayers[i].ap.srcObject = stream;
               break;
             }
           }
         });
+
+        rp.on("close", ()=>{
+          console.log("CONNECTION CLOSED");
+        })
       });
-
-
-      this.peer.on("open", (arg: any) => {
-
-        console.log("PEER CONNECTED");
-        console.log(arg);
-        if (this.controller.players.length) {
-
-          for (let p of this.controller.players) {
-            if (p.userid == this.user.userid) {
-              this.currentPlayer = p;
-              break;
-            }
-          }
-
-          if (this.currentPlayer.color == COLOR.YELLOW) {
-            for (let p of this.controller.players) {
-              if (p.color != COLOR.YELLOW && p.online) {
-                let call = this.peer.call(String(p.userid), stream);
-                this.connections[String(p.userid)] = call;
-                call.on('stream', (remoteStream: MediaStream) => {
-                  for (let j = 0; j < this.audioPlayers.length; j++) {
-                    if (this.audioPlayers[j].usedBy == undefined) {
-                      this.audioPlayers[j].ap.srcObject = remoteStream;
-                      this.audioPlayers[j].usedBy = p.userid;
-                      break;
-                    }
-                  }
-                })
-              }
-            }
-          } else if (this.currentPlayer.color == COLOR.RED) {
-            for (let p of this.controller.players) {
-              if (p.color != COLOR.YELLOW && p.color != COLOR.RED && p.online) {
-                let call = this.peer.call(String(p.userid), stream);
-                this.connections[String(p.userid)] = call;
-                call.on('stream', (remoteStream: MediaStream) => {
-                  for (let j = 0; j < this.audioPlayers.length; j++) {
-                    if (this.audioPlayers[j].usedBy == undefined) {
-                      this.audioPlayers[j].ap.srcObject = remoteStream;
-                      this.audioPlayers[j].usedBy = p.userid;
-                      break;
-                    }
-                  }
-                })
-              }
-            }
-          } else if (this.currentPlayer.color == COLOR.GREEN) {
-            for (let p of this.controller.players) {
-              if (p.color != COLOR.YELLOW && p.color != COLOR.RED && p.color != COLOR.GREEN && p.online) {
-                let call = this.peer.call(String(p.userid), stream);
-                this.connections[String(p.userid)] = call;
-                call.on('stream', (remoteStream: MediaStream) => {
-                  for (let j = 0; j < this.audioPlayers.length; j++) {
-                    if (this.audioPlayers[j].usedBy == undefined) {
-                      this.audioPlayers[j].ap.srcObject = remoteStream;
-                      this.audioPlayers[j].usedBy = p.userid;
-                      break;
-                    }
-                  }
-                })
-              }
-            }
-          }
-        } else {
-          for (let p of this.manager.players) {
-            if (this.user.userid != p.userid) {
-              let call = this.peer.call(String(p.userid), stream);
-
-              this.connections[String(p.userid)] = call;
-              call.on('stream', (remoteStream: MediaStream) => {
-
-                for (let j = 0; j < this.audioPlayers.length; j++) {
-                  if (this.audioPlayers[j].usedBy == undefined) {
-                    this.audioPlayers[j].ap.srcObject = remoteStream;
-                    this.audioPlayers[j].usedBy = p.userid;
-                    break;
-                  }
-                }
-              });
-            }
-          }
-        }
-      });
+      
     });
 
   }
 
   ngOnDestroy(): void {
-    this.peer.destroy();
+
+    for(let pr in this.connections){
+      this.connections[pr].peer.destroy();
+    }
+
+    peerSocket.off("CONNECTION_ACKNOWLEDGED");
+    peerSocket.off("CONNECTION_REQUEST");
+    peerSocket.off("PLAYER_LEFT");
+
     this.currentPlayerStream.getTracks()[0].stop();
   }
 
